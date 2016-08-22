@@ -47,5 +47,29 @@
 			UnaryOperator<T> T 		T 			逻辑非（ !）
 			BinaryOperator<T> (T, T) T 			求两个数的乘积（ *）
 ***
-### 流 Stream
-1. 
+### 流 Stream 对集合api的新增操作
+1. 在集合顶层接口Collection中定义了一个默认方法
+
+		default Stream<E> stream() {
+	        return StreamSupport.stream(spliterator(), false);
+	    }
+	该方法用于返回一个Stream对象
+2. **及早最值**：像filter 这样只描述Stream，最终不产生新集合的方法叫作惰性求值方法；而像count 这样**最终会从Stream 产生值的方法叫作及早求值方法**。
+2. 常用的流操作
+	1. collect(toList())：Stream 里的值生成一个列表，是一个及早求值操作。
+	2. map：如果有一个函数可以将一种类型的值转换成另外一种类型，map 操作就可以使用该函数，将一个流中的值转换成一个新的流。map接收一个function类型的参数
+	3. filter：过滤，接收一个Predicate类型的参数
+	4. flatMap：flatMap 方法可用Stream 替换值， 然后将多个Stream 连接成一个Stream
+	5. max和min：求最大值和最小值
+	6. reduce：reduce 操作可以实现从一组值中生成一个值
+
+			//使用reduce求和
+			int count = Stream.of(1, 2, 3)
+					.reduce(0, (acc, element) -> acc + element);
+			//展开reduce操作
+			BinaryOperator<Integer> accumulator = (acc, element) -> acc + element;
+			int count = accumulator.apply(
+				accumulator.apply(
+					accumulator.apply(0, 1),
+					2),
+				3);

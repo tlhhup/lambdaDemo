@@ -34,5 +34,14 @@ public class Artist {
 	public void setOrigin(String origin) {
 		this.origin = origin;
 	}
+	
+	/**
+	 * ÅÐ¶Ï¹ÊÏç
+	 * @param address
+	 * @return
+	 */
+	public boolean isForm(String address){
+		return this.origin.equals(address);
+	}
 
 }
