@@ -40,15 +40,16 @@
 
 		
 			接口			参数		返回类型		示例
-			Predicate<T> 	T 		boolean 	这张唱片已经发行了吗
+			Predicate<T> 	T 		boolean 	这张唱片已经发行了吗，断言
 			Consumer<T> 	T 		void 		输出一个值
-			Function<T,R> 	T R 	获得Artist 	对象的名字
+			Function<T,R> 	T R 	获得Artist 	对象的名字，值得转换
 			Supplier<T> 	None 	T 			工厂方法
 			UnaryOperator<T> T 		T 			逻辑非（ !）
 			BinaryOperator<T> (T, T) T 			求两个数的乘积（ *）
 4. 注意事项
 	1. 在使用lambda表达式时，对应的函数接口中只能有一个抽象方法
 	2. lambda表达式主体由多条语句组成时，如果相应的函数接口具有返回值，则需要手动的返回数据。
+	3. lambda表达式中使用外部变量，如同匿名内部类是否外部变量方式一致，但在lambda表达式中该变量可以省略修饰符final，但是该**变量在实际意义上必须表示为final修饰的**
 ***
 ### 流 Stream 对集合api的新增操作
 1. 在集合顶层接口Collection中定义了一个默认方法
@@ -62,8 +63,9 @@
 	1. collect(toList())：Stream 里的值生成一个列表，是一个及早求值操作。
 	2. map：如果有一个函数可以将一种类型的值转换成另外一种类型，map 操作就可以使用该函数，将一个流中的值转换成一个新的流。map接收一个function类型的参数
 	3. filter：过滤，接收一个Predicate类型的参数
-	4. flatMap：flatMap 方法可用Stream 替换值， 然后将多个Stream 连接成一个Stream
+	4. flatMap：然后将多个Stream 连接成一个Stream
 	5. max和min：求最大值和最小值
+	6. of:将多个元素转换成Stream
 	6. reduce：reduce 操作可以实现从一组值中生成一个值
 
 			//使用reduce求和

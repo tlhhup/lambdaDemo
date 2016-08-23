@@ -10,6 +10,7 @@ public class Artist {
 	private String name;// 艺术家的名字（例如“甲壳虫乐队”）。
 	private List<Artist> members;// 乐队成员（例如“约翰 · 列侬”），该字段可为空。
 	private String origin;// 乐队来自哪里（例如“利物浦”）。
+	private String nationality;
 
 	public String getName() {
 		return name;
@@ -42,6 +43,14 @@ public class Artist {
 	 */
 	public boolean isForm(String address){
 		return this.origin.equals(address);
+	}
+
+	public String getNationality() {
+		return nationality;
+	}
+
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
 	}
 
 }

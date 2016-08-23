@@ -1,9 +1,11 @@
 package com.lambdaDemo.entity;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * 专辑，由若干曲目组成。
+ * 
  * @author ping
  */
 public class Album {
@@ -23,12 +25,28 @@ public class Album {
 		return tracks;
 	}
 
+	/**
+	 * 获取流式的结果
+	 * @return
+	 */
+	public Stream<Track> getStreamTracks() {
+		return this.tracks.stream();
+	}
+
 	public void setTracks(List<Track> tracks) {
 		this.tracks = tracks;
 	}
 
 	public List<Artist> getMusicians() {
 		return musicians;
+	}
+	
+	/**
+	 * 获取流式的结果
+	 * @return
+	 */
+	public Stream<Artist> getStreamMusicans(){
+		return this.musicians.stream();
 	}
 
 	public void setMusicians(List<Artist> musicians) {
