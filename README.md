@@ -46,6 +46,9 @@
 			Supplier<T> 	None 	T 			工厂方法
 			UnaryOperator<T> T 		T 			逻辑非（ !）
 			BinaryOperator<T> (T, T) T 			求两个数的乘积（ *）
+4. 注意事项
+	1. 在使用lambda表达式时，对应的函数接口中只能有一个抽象方法
+	2. lambda表达式主体由多条语句组成时，如果相应的函数接口具有返回值，则需要手动的返回数据。
 ***
 ### 流 Stream 对集合api的新增操作
 1. 在集合顶层接口Collection中定义了一个默认方法
