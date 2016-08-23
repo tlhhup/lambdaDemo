@@ -133,4 +133,31 @@
 		artist -> artist.getName()改为方法引用---->Artist::getName
 	1. 构造函数：类名::new    如：Artist::new
 	2. 创建数组:类名[]::new	如：String[]::new
-2. 
+2. 元素顺序：
+3. 收集器：Collectors 一个及早求值的方法，从流中生成复杂值得结构
+	1. Comparator接口中提供了一些静态方法，用于比较
+	2. 转换成其他集合
+
+			artists.collect(Collectors.toCollection(TreeSet::new));
+	3. 转换成值
+			
+			//定义一个方法
+			Function<Artist, Integer> getCount=artist->artist.getMembers().size();
+			return artists.collect(Collectors.maxBy(Comparator.comparing(getCount)));
+	4. 数据分块：调用 Collectors的partitioningBy方法将数据分成true和false映射的map数据
+	5. 数据分组：调用 Collectors的groupingBy方法
+	6. 格式化字符串：调用 Collectors的joining方法
+	7. 自定义收集器：实现Collector接口
+***
+###数据并行化
+1. 并行和并发
+	1. 并行：多个任务在同一时间发生(将同一任务分块同一时间一起执行)
+	2. 并发：多个任务共享时间段
+3. 数据的并行化：将数据分块，为每块数据分配单独的处理单元
+	1. 如果是Stream则调用parallel方法使得stream就有并行化能力
+	2. 如果想从一个集合类创建一个流，调用parallelStream 就能立即获得一个拥有并行能力的流
+3. 并行化数组
+	1. 在Arrays工具类中提供了以下方法
+		1. parallelPrefix 任意给定一个函数，计算数组的和
+		2. parallelSetAll 使用Lambda 表达式更新数组元素
+		3. parallelSort 并行化对数组元素排序
