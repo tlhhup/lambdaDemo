@@ -2,6 +2,7 @@ package com.lambdaDemo.stream;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.LongSummaryStatistics;
 import java.util.Random;
 import java.util.Set;
 import java.util.stream.Collectors;
@@ -74,8 +75,23 @@ public class FileterAndCount {
 		return numbers.reduce(0, (acc,element)->acc+element);
 	}
 	
+	/**
+	 * 统计小写字母的个数
+	 * @param src
+	 * @return
+	 */
 	public static long countUpcase(String src){
 		return src.chars().filter(c->c>='a'&&c<='z').count();
+	}
+	
+	/**
+	 * 统计曲目的长度
+	 * @param album
+	 */
+	public static void printTrackLengthStatistics(Album album){
+		LongSummaryStatistics statistics = album.getStreamTracks().mapToLong(track->track.getLength())//
+							.summaryStatistics();
+		statistics.getAverage();//获取平均值
 	}
 	
 }
