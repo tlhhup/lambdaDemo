@@ -80,7 +80,7 @@
 				3);
 3. 在**1.8之后Iterable接口**中添加了forEach和spliterator方法
 4. 在**1.7之后utisl包中提供了一个Objects**工具类可对对象进行非空校验
-5. **针对实现了Closeable(继承AutoCloseable)接口的类**，在使用try-catch语句块的时候可以简写为以下格式
+5. **在1.7之后新增try-with-resource**针对实现了Closeable(继承AutoCloseable)接口的类，在使用try-catch语句块的时候可以简写为以下格式
 			
 		//省略在finally语句块中的关闭资源
 		try(CloseResource editor=new CloseResource()){
